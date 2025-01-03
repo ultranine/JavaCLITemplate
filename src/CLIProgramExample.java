@@ -34,27 +34,27 @@ public class CLIProgramExample {
                     if (usercmd.length < 2) {
                         // Prevent execution if no file argument.
                         System.out.println("Syntax Error.");
+                        continue; // Stop command execution, skip to next iteration.
                     }
-                    else {
-                        // Reattach any filepath parts that may have been split off.
-                        String filepath = usercmd[1];
-                        for (byte i = 2; i < usercmd.length; i++) {
-                            filepath = filepath.concat(" " + usercmd[i]);
-                        }
 
-                        // Check if image actually exists.
-                        File image = new File(filepath);
-                        if (!image.exists()) {
-                            System.out.println(image.getAbsolutePath() + " does not exist!");
-                            continue; // Stop command execution if no file found.
-                        }
-
-                        // Display image.
-                        toDisplay = new ImageIcon(image.getAbsolutePath());
-                        label.setIcon(toDisplay);
-                        display.setSize(toDisplay.getIconWidth(), toDisplay.getIconHeight());
-                        display.setVisible(true);
+                    // Reattach any filepath parts that may have been split off.
+                    String filepath = usercmd[1];
+                    for (byte i = 2; i < usercmd.length; i++) {
+                        filepath = filepath.concat(" " + usercmd[i]);
                     }
+
+                    // Check if image actually exists.
+                    File image = new File(filepath);
+                    if (!image.exists()) {
+                        System.out.println(image.getAbsolutePath() + " does not exist!");
+                        continue; // Stop command execution if no file found.
+                    }
+
+                    // Display image.
+                    toDisplay = new ImageIcon(image.getAbsolutePath());
+                    label.setIcon(toDisplay);
+                    display.setSize(toDisplay.getIconWidth(), toDisplay.getIconHeight());
+                    display.setVisible(true);
                 } break;
                 case "help": {
                     System.out.println(
